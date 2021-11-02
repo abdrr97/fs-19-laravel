@@ -1,11 +1,4 @@
-@extends('layout.app')
+<h1>About Page</h1>
 
-@section('content')
-
-    <h1>About Page</h1>
-
-
-    <a href="{{ route('home') }}">Home</a>
-    <a href="/contact">Contact</a>
-
-@endsection
+<a href="/contact">Contact</a>
+<a href="/">welcome</a>

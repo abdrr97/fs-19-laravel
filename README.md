@@ -38,3 +38,37 @@ Laravel
     - Introduction to database migrations
     - Creating and migrating migrations
     - Laravel Tinker and Elequent Models
+
+
+
+select * from users where id = 1
+
+
+title
+content
+active
+
+-- m 1
+$p = new App\Models\Post();
+$p->title = 'title 1';
+$p->content = 'content 1';
+$p->save();
+
+-- m2
+
+App\Models\Post::create([
+'title' => 'title 1',
+'content' => 'content 1',
+]);
+
+--
+
+$post = App\Models\Post::find(1);
+$post->title = 'title 1 updated';
+$post->save();
+
+--
+$post = App\Models\Post::find(1);
+$post->update([
+    'title' => 'title 1 updated'
+]);
