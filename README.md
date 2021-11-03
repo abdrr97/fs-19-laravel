@@ -1,35 +1,10 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework">
-<img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="https://laravel.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400">
+</a>
 </p>
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-# created
-# $post = new App\Models\Post();
-# $post->title = 'title 1';
-# $post->content = 'content 1';
-# $post->save();
-
-### query Elequent ORM (object relational mapper)
-
-Post::orderBy('updated_at' , 'DESC')->get();
-Post::latest()->get();
-
-Post::find(id) // == null
-Post::findOrFail(id) // ==  404 NOT FOUND
-Post::where('id' , 1)->get()
-Post::where('is_active' , true)->latest()->get()
-Post::all()
-
-Laravel 
+- Laravel 
     - Routes Views & Layouts
     - Views routes parameters & Rendering data in views
     - Named routes and generating URLs 
@@ -39,36 +14,54 @@ Laravel
     - Creating and migrating migrations
     - Laravel Tinker and Elequent Models
 
+```php
+
+    // Storing a single post in Database
+    
+    // Method 1
+    $post = new App\Models\Post(); // post model instance
+    $post->title = "Post Title 1";
+    $post->content = "Post Content 1";
+    $post->active = true;
+    $post->save();
+
+    //Method 2
+    App\Models\Post::create([
+        'title' => 'Post Title 1',
+        'content' => 'Post Content 1',
+        'active' => true
+    ]);
+
+    // Updating a single post 
+
+    // Method 1
+    $post = App\Models\Post::find(1);
+    $post->title = 'title 1 updated';
+    $post->save();
+
+    //Method 2
+    $post = App\Models\Post::find(1);
+    $post->update([
+        'title' => 'Post Title 1 Updated'
+    ]);
 
 
-select * from users where id = 1
+```
+
+### Elequent ORM (object relational mapper)
 
 
-title
-content
-active
+```php 
+// getting posts data from database
+// using Elequent Model 
 
--- m 1
-$p = new App\Models\Post();
-$p->title = 'title 1';
-$p->content = 'content 1';
-$p->save();
+Post::orderBy('updated_at' , 'DESC')->get();
+Post::latest()->get(); // shorter synthax
 
--- m2
+Post::find($id) // get one post
+Post::findOrFail($id) // get one post (if not found it will throw an error)
+Post::where('id' , 1)->get() 
+Post::where('active' , true)->latest()->get()
+Post::all() // getting all posts
 
-App\Models\Post::create([
-'title' => 'title 1',
-'content' => 'content 1',
-]);
-
---
-
-$post = App\Models\Post::find(1);
-$post->title = 'title 1 updated';
-$post->save();
-
---
-$post = App\Models\Post::find(1);
-$post->update([
-    'title' => 'title 1 updated'
-]);
+``` 

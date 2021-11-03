@@ -7,7 +7,7 @@
         @foreach ($posts as $post)
             <li>
                 {{-- <a href="/posts/{{ $post->id }}">{{ $post->title }}</a> --}}
-                <a href="{{ route('posts.show', ['id' => $post->id]) }}">
+                <a href="{{ route('posts.show', compact($post->id)) }}">
                     {{ $post->title }}
                 </a>
                 {{-- CARBON --}}
