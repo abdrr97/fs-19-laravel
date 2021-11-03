@@ -27,4 +27,20 @@ class PostController extends Controller
         // abort_if($post == null, 200, "Serveur Tai7");
         return view('posts.show', compact('post'));
     }
+
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store(Request $request)
+    {
+        $post = new Post(); // post model instance
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->save();
+
+        return redirect()->route('posts.index');
+    }
 }
