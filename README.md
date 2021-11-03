@@ -61,7 +61,10 @@ Post::latest()->get(); // shorter synthax
 Post::find($id) // get one post
 Post::findOrFail($id) // get one post (if not found it will throw an error)
 Post::where('id' , 1)->get() 
+Post::where('title' , 'LIKE' , '%1%')->get() 
 Post::where('active' , true)->latest()->get()
+Post::whereActive(true)->latest()->get()
 Post::all() // getting all posts
+Post::cursor() // cache request in memeory
 
 ``` 
