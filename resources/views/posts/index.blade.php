@@ -7,9 +7,8 @@
         @foreach ($posts as $post)
             <li>
                 {{ $post->title }}
-                <p>
-                    {{ $post->content }}
-                </p>
+                {{-- CARBON --}}
+                <small>{{ $post->created_at->diffForHumans() }}</small>
             </li>
         @endforeach
     </ul>
