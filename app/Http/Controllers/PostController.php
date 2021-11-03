@@ -23,8 +23,8 @@ class PostController extends Controller
     public function show($id)
     {
         // $post = Post::find($id);
-        $post = Post::findOrFail($id);
         // abort_if($post == null, 200, "Serveur Tai7");
+        $post = Post::findOrFail($id);
         return view('posts.show', compact('post'));
     }
 
