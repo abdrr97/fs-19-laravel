@@ -12,6 +12,7 @@
                 </a>
                 {{-- CARBON --}}
                 <small>{{ $post->created_at->diffForHumans() }}</small>
+                <a href="{{ route('posts.edit', $post->id) }}">edit</a>
             </li>
         @endforeach
     </ul>

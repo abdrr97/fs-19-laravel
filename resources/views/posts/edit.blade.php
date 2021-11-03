@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <h1>New Post</h1>
+    <h1>Edit Post</h1>
 
     @if (count($errors) > 0)
         <ul>
@@ -14,20 +14,21 @@
     @endif
 
     {{-- form --}}
-    <form action="{{ route('posts.store') }}" method="POST">
+    <form action="{{ route('posts.update', $post->id) }}" method="POST">
         @csrf
+        @method('PUT')
 
-        <input value="{{ old('title') }}" type="text" name="title"><br>
+        <input value="{{ $post->title }}" type="text" name="title"><br>
         @error('title')
             <p style="color:red">{{ $message }}</p>
         @enderror
 
-        <textarea name="content">{{ old('content') }}</textarea><br>
+        <textarea name="content">{{ $post->content }}</textarea><br>
         @error('content')
             <p style="color:red">{{ $message }}</p>
         @enderror
 
-        <button>save</button>
+        <button>update</button>
     </form>
 
 @endsection

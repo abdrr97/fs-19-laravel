@@ -36,7 +36,34 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        // https://laravel.com/docs/8.x/validation#introduction
+        $request->validate([
+            'title' => 'required|string|min:6',
+            'content' => 'required',
+        ]);
+
         $post = new Post(); // post model instance
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->save();
+
+        return redirect()->route('posts.index');
+    }
+
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.edit', compact('post'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string|min:6',
+            'content' => 'required',
+        ]);
+
+        $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
