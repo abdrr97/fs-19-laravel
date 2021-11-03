@@ -6,7 +6,10 @@
     <ul>
         @foreach ($posts as $post)
             <li>
-                {{ $post->title }}
+                {{-- <a href="/posts/{{ $post->id }}">{{ $post->title }}</a> --}}
+                <a href="{{ route('posts.show', ['id' => $post->id]) }}">
+                    {{ $post->title }}
+                </a>
                 {{-- CARBON --}}
                 <small>{{ $post->created_at->diffForHumans() }}</small>
             </li>
